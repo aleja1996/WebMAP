@@ -1,0 +1,1958 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 674px;
+            height: 634px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/GDB_procesosagrupamiento_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-16.38908082348823,-76.29182950602387],[-11.582096359388233,-71.18060551887956]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_CartoDbDarkMatter_0 = L.tileLayer('http://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_CartoDbDarkMatter_0;
+        map.addLayer(layer_CartoDbDarkMatter_0);
+        function pop_GDB_procesosagrupamiento_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(feature.properties['OBJECTID'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['UBIGEO'] !== null ? Autolinker.link(feature.properties['UBIGEO'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IDPROV'] !== null ? Autolinker.link(feature.properties['IDPROV'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Departamento'] !== null ? Autolinker.link(feature.properties['Departamento'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Provincia'] !== null ? Autolinker.link(feature.properties['Provincia'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Distrito</th>\
+                        <td>' + (feature.properties['Distrito'] !== null ? Autolinker.link(feature.properties['Distrito'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['urbana'] !== null ? Autolinker.link(feature.properties['urbana'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['rural'] !== null ? Autolinker.link(feature.properties['rural'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['porc_urbana18'] !== null ? Autolinker.link(feature.properties['porc_urbana18'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['porc_rural18'] !== null ? Autolinker.link(feature.properties['porc_rural18'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hog18'] !== null ? Autolinker.link(feature.properties['hog18'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID_1'] !== null ? Autolinker.link(feature.properties['OBJECTID_1'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['UBIGEO_1'] !== null ? Autolinker.link(feature.properties['UBIGEO_1'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CV'] !== null ? Autolinker.link(feature.properties['CV'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POBREZA'] !== null ? Autolinker.link(feature.properties['POBREZA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GRUPO_NEW'] !== null ? Autolinker.link(feature.properties['GRUPO_NEW'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DIFPOR'] !== null ? Autolinker.link(feature.properties['DIFPOR'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Length'] !== null ? Autolinker.link(feature.properties['Shape_Length'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? Autolinker.link(feature.properties['Shape_Area'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_1_C'] !== null ? Autolinker.link(feature.properties['ANA_1_C'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_1_P'] !== null ? Autolinker.link(feature.properties['ANA_1_P'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_2_C'] !== null ? Autolinker.link(feature.properties['ANA_2_C'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_2_P'] !== null ? Autolinker.link(feature.properties['ANA_2_P'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_3_C'] !== null ? Autolinker.link(feature.properties['ANA_3_C'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_3_P'] !== null ? Autolinker.link(feature.properties['ANA_3_P'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_4_C'] !== null ? Autolinker.link(feature.properties['ANA_4_C'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_4_P'] !== null ? Autolinker.link(feature.properties['ANA_4_P'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_5_C'] !== null ? Autolinker.link(feature.properties['ANA_5_C'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANA_5_P'] !== null ? Autolinker.link(feature.properties['ANA_5_P'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DIST_CRIT'] !== null ? Autolinker.link(feature.properties['DIST_CRIT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOLUCION'] !== null ? Autolinker.link(feature.properties['SOLUCION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GDB_procesosagrupamiento_1_0(feature) {
+            switch(String(feature.properties['Distrito'])) {
+                case 'ACCOMARCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ACOCRO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,30,30,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ACOS VINCHOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,35,32,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ALCAMENCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,40,35,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ANCHIHUAY':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(221,45,37,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ANCO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,50,39,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ANDRES AVELINO CACERES DORREGARAY':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(223,55,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'APONGO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,60,44,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ASQUIPATA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,65,46,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'AUCARA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,70,49,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'AYACUCHO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,75,51,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'AYAHUANCO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,80,53,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'AYNA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,85,56,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BELEN':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,91,58,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CABANA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,96,60,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CANARIA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,101,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CANAYRE':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,106,65,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CANGALLO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,111,68,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CARAPO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,116,70,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CARHUANCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,121,72,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CARMEN ALTO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,126,75,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CARMEN SALCEDO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(242,131,77,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CAYARA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,136,79,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHACA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(245,141,82,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHALCOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(246,146,84,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHAVIÑA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,151,86,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHIARA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(249,156,89,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHILCAS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,162,91,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHILCAYOC':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,167,93,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHIPAO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,172,96,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHUMPI':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,176,98,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHUNGUI':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,178,102,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CHUSCHI':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,181,105,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'COLCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,184,108,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'COLTA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,187,111,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CONCEPCION':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,189,114,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CORACORA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,192,118,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CORCULLA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,195,121,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'CORONEL CASTAÑEDA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,198,124,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUACAÑA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,200,127,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUAC-HUAS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,203,130,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUAMANGUILLA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,206,134,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUAMANQUIQUIA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,209,137,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUAMBALPA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,211,140,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUANCAPI':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,214,143,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUANCARAYLLA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,217,146,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUANTA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,220,150,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'HUAYA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,222,153,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'IGUAIN':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,225,156,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'INDEPENDENCIA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,228,159,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'JESUS NAZARENO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,231,162,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LAMPA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,233,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LARAMATE':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,236,169,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LEONCIO PRADO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,239,172,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LLAUTA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,242,175,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LLOCHEGUA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,244,178,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LOS MOROCHUCOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,247,182,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LUCANAS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,250,185,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LUIS CARRANZA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,253,188,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'LURICOCHA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,191,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'MARCABAMBA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,254,190,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'MARIA PARADO DE BELLIDO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,253,189,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'MORCOLLA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,188,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'OCAÑA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,251,188,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'OCROS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,250,187,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ORONCOY':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,249,186,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'OTOCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,247,185,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'OYOLO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,246,184,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PACAPAUSA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,245,183,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PACAYCASA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,244,182,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PAICO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,243,181,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PARARCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(221,242,180,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PARAS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,240,179,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PAUSA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,239,178,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PUCACOLPA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(213,238,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PULLO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,237,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PUQUIO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,236,176,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'PUYUSCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,235,175,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'QUEROBAMBA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,174,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'QUINUA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,232,173,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SACSAMARCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(195,231,172,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAISA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(193,230,171,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAMUGARI':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,229,170,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN CRISTOBAL':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(187,228,169,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN FRANCISCO DE RAVACAYCO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(184,227,168,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN JAVIER DE ALPABAMBA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(181,225,167,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN JOSE DE TICLLAS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(178,224,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN JOSE DE USHUA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(175,223,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN JUAN':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(173,222,165,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN JUAN BAUTISTA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(169,220,165,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN MIGUEL':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(165,217,165,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN PEDRO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(160,214,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN PEDRO DE LARCAY':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(156,211,167,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN PEDRO DE PALCO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,208,168,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAN SALVADOR DE QUIJE':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(147,205,168,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANCOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(143,201,169,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTA ANA DE HUAYCAHUACHO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(139,198,170,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTA LUCIA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(134,195,171,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTA ROSA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(130,192,171,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTIAGO DE LUCANAMARCA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,189,172,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTIAGO DE PAUCARAY':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(121,186,173,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTIAGO DE PISCHA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(117,183,174,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SANTILLANA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(112,180,174,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SARA SARA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(108,177,175,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SARHUA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(104,174,176,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SAURAMA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(99,171,176,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SIVIA':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(95,168,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SOCOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(91,165,178,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SORAS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(86,162,179,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TAMBILLO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(82,159,179,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TAMBO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(78,156,180,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TOTOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(73,152,181,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UCHURACCAY':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(69,149,182,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'UPAHUACHO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(64,146,182,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'VILCANCHOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(60,143,183,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'VILCAS HUAMAN':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(56,140,184,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'VINCHOS':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,137,185,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'VISCHONGO':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(47,134,185,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                pane: 'pane_GDB_procesosagrupamiento_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,131,186,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_GDB_procesosagrupamiento_1');
+        map.getPane('pane_GDB_procesosagrupamiento_1').style.zIndex = 401;
+        map.getPane('pane_GDB_procesosagrupamiento_1').style['mix-blend-mode'] = 'normal';
+        var layer_GDB_procesosagrupamiento_1 = new L.geoJson(json_GDB_procesosagrupamiento_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GDB_procesosagrupamiento_1',
+            layerName: 'layer_GDB_procesosagrupamiento_1',
+            pane: 'pane_GDB_procesosagrupamiento_1',
+            onEachFeature: pop_GDB_procesosagrupamiento_1,
+            style: style_GDB_procesosagrupamiento_1_0,
+        });
+        bounds_group.addLayer(layer_GDB_procesosagrupamiento_1);
+        map.addLayer(layer_GDB_procesosagrupamiento_1);
+        setBounds();
+        </script>
+    </body>
+</html>
